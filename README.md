@@ -7,6 +7,8 @@ To update Shellpy just launch "update.py"
 
 # Requirements
 
-```pip install request
+```
+pip install request
 pip install time
-pip install pynput```
+pip install pynput
+```
