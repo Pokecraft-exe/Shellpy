@@ -1,68 +1,72 @@
-# Shellpy is a interactive shell with net download,
-# Shellpy is opensource on github and new version will avaliable above 1/month
-# Shellpy is a pseudo-linux emulator
-
-import zipfile
+import sys
 import os
+from datetime import datetime
+import time
+import socket
+import random
+from pynput.keyboard import Key, Controller
 
-def bashrc_read():
-  bashrc = open(".bashrc", 'r')
-  lines = bashrc.readlines()
-  for line in bashrc.readlines():
-    testvar = 1
-  #if findchar(lines[0], "P") and findchar(lines[0], "S") and findchar(lines[0], "1") and findchar(lines[0], "="):
-  rootstr = input("$ ") #getstr(lines[0], 5))
-  #else:
-  #  rootstr = "ERROR ROOT"
-  #  print("DEBUG: .bashrc line (1):{}".format(lines[1]))
-  path(rootstr)
+"""
+Shellpy is a interactive shell with net download,
+Shellpy is opensource on github
+"""
 
-def path(command):
-  PATH="COMMAND"
-  autosh()
-
-def findchar(list, char):
-  find = False
-  for i in range(len(list)):
-    if list[i - 1] == char:
-      find = True
-    else:
-      if find == True:
-        find = True
-      else:
-        find = False
-
-  return find
-
-def findstr(list, char): # if you have the code tell me in coms
-  find = findchar(list, char)
-  for i in range(len(list) - 1):
-    for t in range(len(char) - 1):
-      if findchar(list[i], char[t]): #implicitly if findchar(list[loop], char[t]) == True:
-          find = True
-      else:
-        #if find == True:
-        #  find = True
-        #else:
-        find = False
-  return find
-
-def getchar(list, char):
-  return list[char - 1]
-
-def getstr(list, char):
-  if len(list) >= char:
-    strr = getchar(list, char)
-    loop = 1
-  
-    while loop != (len(list) - 1):
+def shell():
+  instr = command(input("$ "))
+  if instr[0] == "bruteforce":
+    if len(instr) >= 2:
       try:
-        strr = strr + getchar(list, loop + char)
-        loop = loop + 1
-      except:
-        return strr
+        int(instr[1])
+        keyboard = Controller()
+        alphabet = "0123456789-ABCEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
+        alphabetpassfinal = ""
+        print("brutefroce will start in 10 seconds!")
+        time.sleep(10)
+        for j in range(int(instr[1])):
+          for i in range(random.randint(3, 10)):
+            alphabetpass = alphabet[random.randint(0, (len(alphabet) - 1))]
+            alphabetpassfinal = alphabetpassfinal + alphabetpass
+          print(alphabetpassfinal)
+          keyboard.type(alphabetpassfinal)
+          time.sleep(0.06)
+          keyboard.press(Key.enter)
+          keyboard.release(Key.enter)
+          keyboard.press(Key.ctrl)
+          keyboard.press("a")
+          keyboard.release(Key.ctrl)
+          keyboard.release("a")
+          keyboard.press(Key.delete)
+          keyboard.release(Key.delete)
+          alphabetpassfinal = ""
+      except ValueError:
+        print("Error: the argument `time' must be integer, not", type(instr[1]))
+    else:
+        print("Error: `bruteforce' need 1 positional argument `time'")
+  elif instr[0] == "ddos":
+    try:
+      print("under construction")
+    except:
+      print("Error: `ddos' need 1 positional argument `time'")
+  elif instr[0] == "truc":
+    print("")
+  elif instr[0] == "help":
+    print("bruteforce - used to bruteforce some passwords:")
+    print("  time")
+    print("ddos - used to ddos some servers:")
+    print("  time")
   else:
-    return 'out of range: {}, try: {} to get "{}"'.format(char, len(list), getchar(list, len(list)))
+    print("Error: command `{}' not found.".format(instr[0]))
 
-print(result())
-  
+def command(string, point = ' '):
+  args = [""]
+  alist = 0
+  for i in range(len(string)):
+    if string[i] == point:
+      args.append("")
+      alist = alist + 1
+    else:
+      args[alist] = args[alist] + string[i]
+  return args
+
+while(1):
+  shell()
