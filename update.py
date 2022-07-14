@@ -9,6 +9,9 @@ def tryUpdate():
         os.remove("shell.py")
         with open('shell.py', 'wb') as f:
             f.write(requests.get("https://raw.githubusercontent.com/Pokecraft-exe/Shellpy/main/shell.py").content)
+        os.remove("new_features.txt")
+        with open('new_features.txt', 'wb') as f:
+            f.write(requests.get("https://raw.githubusercontent.com/Pokecraft-exe/Shellpy/main/new_features.txt").content)
     except:
         return 1
     return 0
