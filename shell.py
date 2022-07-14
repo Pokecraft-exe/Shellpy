@@ -113,5 +113,6 @@ def command(string, point = ' '):
       args[alist] = args[alist] + string[i]
   return args
 
+print("type `help' to see all commands! ;)")
 while(1):
   shell()
