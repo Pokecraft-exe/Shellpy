@@ -15,7 +15,7 @@ def shell():
   instr = command(instring)[0]
   args = commandDic(instring)
   if instr == "bruteforce":
-    if args['n'] >= 1:
+    if len(args) >= 1:
       try:
         int(args['n'])
         keyboard = Controller()
