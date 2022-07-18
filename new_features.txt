@@ -1,1 +1,2 @@
 added `ddos' with `-t time', `-ip address'
+Fixed crash when executing `bruteforce`
