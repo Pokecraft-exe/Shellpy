@@ -1,0 +1,3 @@
+args -n 1
+
+print -txt {args -out 0}
